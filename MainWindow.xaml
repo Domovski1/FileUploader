@@ -23,7 +23,7 @@
             FontWeight="SemiBold"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Text="File Upload"/>
+            Text="File Convert"/>
 
         <Separator
             VerticalAlignment="Bottom"/>
@@ -37,24 +37,32 @@
             
             <!--Drag and Drop files gere section-->
             <StackPanel VerticalAlignment="Center">
-                <!--To accept the dropping item-->
-                <Rectangle
-                    AllowDrop="True"
-                    Fill="WhiteSmoke"
-                    RadiusX="10"
-                    RadiusY="10"
-                    StrokeDashArray="5"
-                    StrokeThickness="2"
-                    StrokeDashCap="Round"
-                    Stroke="Silver"
-                    Height="300"
-                    Width="300"
-                    />
+                <Grid>
+                    <!--To accept the dropping item-->
+                    <Rectangle
+                        AllowDrop="True"
+                        Fill="WhiteSmoke"
+                        RadiusX="10"
+                        RadiusY="10"
+                        StrokeDashArray="5"
+                        StrokeThickness="2"
+                        StrokeDashCap="Round"
+                        Stroke="Silver"
+                        Height="300"
+                        Width="300"
+                        />
 
-                <!--Logo and Text-->
-                <StackPanel>
-                    
-                </StackPanel>
+                    <!--Logo and Text-->
+                    <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Image Height="50"
+                               Margin="0 10 0 0"
+                               Width="50"
+                               Source="C:\Users\62427\Desktop\file-icon.png"/>
+                        <TextBlock Text="Drop the files to convert"
+                                   FontSize="20"/>
+                    </StackPanel>
+                </Grid>
                 <Button
                     BorderThickness="0"
                     Foreground="White"
@@ -81,7 +89,7 @@
                 <Grid>
                     <ItemsControl>
                         <TextBlock
-                            Text="Файлы отправлены: "
+                            Text="Файлы конвертированы: "
                             FontSize="20"
                             FontWeight="SemiBold"/>
                         
