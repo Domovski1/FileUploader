@@ -73,7 +73,7 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <EventTrigger>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                     <BeginStoryboard>
                         <!--Чтобы добавить эффект прогрузки при 100%-->
                         <Storyboard DecelerationRatio="1">
