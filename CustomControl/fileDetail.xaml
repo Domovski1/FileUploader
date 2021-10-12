@@ -41,7 +41,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock TextTrimming="CharacterEllipsis"
-                           MaxHeight="100"
+                           MaxWidth="200"
                            FontWeight="Bold"
                            Text="{Binding FileName, ElementName=this,
                                   FallbackValue=FileName, TargetNullValue=FileName}"/>

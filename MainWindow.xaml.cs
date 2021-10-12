@@ -29,13 +29,31 @@ namespace FileUploader
         }
 
 
-
+            
 
        
 
         private void FileDrop(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string fileName = System.IO.Path.GetFileName(files[0]);
 
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string filename = System.IO.Path.GetFileName(files[i]);
+                    FileInfo fileInfo = new FileInfo(files[i]);
+                    UploadingFilesList.Items.Add(new fileDetail()
+                    {
+                        FileName = filename,
+                        FileSize = string.Format("{0} {1}", (fileInfo.Length / 1.094e+6).ToString("0.0"), "Mb"),
+                        UploadProgress = 100
+                    });
+                }
+
+
+            }
         }
 
         private void BtnChoose_click(object sender, RoutedEventArgs e)
@@ -56,7 +74,7 @@ namespace FileUploader
                         FileName = filename,
                         FileSize = string.Format("{0} {1}", (fileInfo.Length / 1.094e+6).ToString("0.0"), "Mb"),
                         UploadProgress = 100
-                    }); ;
+                    });
                 }
             }
         }
