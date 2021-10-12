@@ -40,6 +40,7 @@
                 <Grid>
                     <!--To accept the dropping item-->
                     <Rectangle
+                        Drop="FileDrop"
                         AllowDrop="True"
                         Fill="WhiteSmoke"
                         RadiusX="10"
@@ -64,6 +65,7 @@
                     </StackPanel>
                 </Grid>
                 <Button
+                    Click="BtnChoose_click"
                     BorderThickness="0"
                     Foreground="White"
                     Background="#FF80CD24"
@@ -87,7 +89,8 @@
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Hidden">
                 <Grid>
-                    <ItemsControl>
+                    <ItemsControl
+                        x:Name="UploadingFilesList">
                         <TextBlock
                             Text="Файлы конвертированы: "
                             FontSize="20"

@@ -75,7 +75,7 @@
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Text" Value="{Binding Value, ElementName=pb, 
-                            StringFormat={}{0:#,#.0% done}}"/>
+                            StringFormat={}{0:##.0% done}}"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Value, ElementName=pb}" Value="100">
                                 <Setter Property="Text" Value="Загрузка завершена"/>
