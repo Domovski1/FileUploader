@@ -5,10 +5,103 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FileUploader.CustomControl"
              mc:Ignorable="d" 
-             x:Name="This"
+             x:Name="this"
              Background="White"
-             d:DesignWidth="300" Height="150">
-    <Grid>
+             d:DesignWidth="300" 
+             Height="150">
+    
+    
+    <Grid Margin="0 15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/> <!--For icon-->
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="C:\Users\62427\Desktop\file-icon.png"
+               Width="25"
+               Stretch="Uniform"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left" 
+               />
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <!--File name and size-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock TextTrimming="CharacterEllipsis"
+                           MaxHeight="100"
+                           FontWeight="Bold"
+                           Text="{Binding FileName, ElementName=this,
+                                  FallbackValue=FileName, TargetNullValue=FileName}"/>
+                <TextBlock Grid.Column="1"
+                           Padding="5 0"
+                           Text="{Binding FileSize, ElementName=this, 
+                                  FallbackValue=FileSizeInMb, TargetNullValue=FileSizeInMb}"/>
+            </Grid>
+
             
+            <!--Cancel button-->
+            <Button
+                BorderThickness="0"
+                Background="Transparent"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+                <Image Height="15"
+                       Stretch="Uniform"
+                       Source="C:\Users\62427\Desktop\close.png"/>
+            </Button>
+
+
+            <ProgressBar 
+                x:Name="pb"
+                Grid.Row="1"
+                Height="8"
+                Foreground="#47BDFF"
+                Value="{Binding UploadProgress, ElementName=this}" Margin="-1,11,1,11"/>
+
+            <TextBlock Grid.Row="2">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Text" Value="{Binding Value, ElementName=pb, 
+                            StringFormat={}{0:#,#.0% done}}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Value, ElementName=pb}" Value="100">
+                                <Setter Property="Text" Value="Загрузка завершена"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+             
+            <TextBlock Grid.Row="2"
+                       HorizontalAlignment="Right">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Text" Value="{Binding UploadSpeed, ElementName=pb, 
+                            StringFormat={}{0}Kb/sec}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FallbackValue, ElementName=pb}" Value="100">
+                                <Setter Property="Text" Value="Загрузка завершена"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            
+        </Grid>
     </Grid>
 </UserControl>
