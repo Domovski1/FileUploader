@@ -67,7 +67,7 @@ namespace FileUploader
 
                 for (int i = 0; i < files.Length; i++)
                 {
-                    string filename = System.IO.Path.GetFileName(files[i]); 
+                    string filename = System.IO.Path.GetFileName(files[i]);
                     FileInfo fileInfo = new FileInfo(files[i]);
                     UploadingFilesList.Items.Add(new fileDetail()
                     {
@@ -75,7 +75,23 @@ namespace FileUploader
                         FileSize = string.Format("{0} {1}", (fileInfo.Length / 1.094e+6).ToString("0.0"), "Mb"),
                         UploadProgress = 100
                     });
+                    ConverterToAudio(@"C:\Users\62427\Desktop\Bot\" + filename);
                 }
+            }
+        }
+
+
+        void ConverterToAudio(string path)
+        {
+            string AudioName = path.Replace("mp4", "mp3");
+            try
+            {
+                var ConvertVideo = new NReco.VideoConverter.FFMpegConverter();
+                ConvertVideo.ConvertMedia(path, AudioName, "mp3");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
